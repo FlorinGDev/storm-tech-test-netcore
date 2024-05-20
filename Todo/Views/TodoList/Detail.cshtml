@@ -63,10 +63,15 @@
                    
                     <div class="col-md-4 text-right">
                         <small>
+                            @{
+                                var gravatarName = await Gravatar.GetGravatarUseName(item.ResponsibleParty.Email);
+                            }
                             @item.ResponsibleParty.UserName
-
+                            @gravatarName
+                            @* THIS CAN BE TAKEN WITH FIRST CALL TO TAKE NAME  *@
                             <img src="https://www.gravatar.com/avatar/@Gravatar.GetHash(item.ResponsibleParty.Email)?s=30" />
-
+                          
+                          
                         </small>
                     </div>
                 </div>
