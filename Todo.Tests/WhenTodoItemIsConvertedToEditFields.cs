@@ -1,5 +1,5 @@
-using System.Linq;
 using Microsoft.AspNetCore.Identity;
+using System.Linq;
 using Todo.Data.Entities;
 using Todo.EntityModelMappers.TodoItems;
 using Todo.Models.TodoItems;
@@ -15,7 +15,7 @@ namespace Todo.Tests
         public WhenTodoItemIsConvertedToEditFields()
         {
             var todoList = new TestTodoListBuilder(new IdentityUser("alice@example.com"), "shopping")
-                    .WithItem("bread", Importance.High)
+                    .WithItem("bread", Importance.High, 0)
                     .Build()
                 ;
 
@@ -40,6 +40,12 @@ namespace Todo.Tests
         public void EqualImportance()
         {
             Assert.Equal(srcTodoItem.Importance, resultFields.Importance);
+        }
+
+        [Fact]
+        public void EqualRank()
+        {
+            Assert.Equal(srcTodoItem.Rank, resultFields.Rank);
         }
     }
 }

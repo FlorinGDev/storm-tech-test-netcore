@@ -8,6 +8,8 @@
         });
     });
 
-   
+    $('#createItemPopUp').click(function () {
+        window.open("", "Create New Item", "height=200,width=200,modal=yes,position=center,200");
+    });
 
 });

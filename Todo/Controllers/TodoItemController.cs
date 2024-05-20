@@ -27,6 +27,12 @@ namespace Todo.Controllers
             return View(fields);
         }
 
+        //[HttpGet]
+        //public IActionResult CreatePopUp(TodoItemCreateFields fields)
+        //{
+
+        //}
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(TodoItemCreateFields fields)
