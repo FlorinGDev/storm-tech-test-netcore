@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
 using System.Linq;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Todo.Data;
 using Todo.Data.Entities;
 
@@ -17,7 +17,12 @@ namespace Todo.Views.TodoItem
 
         public static List<SelectListItem> UserSelectListItems(this ApplicationDbContext dbContext)
         {
-            return dbContext.Users.Select(u => new SelectListItem {Text = u.UserName, Value = u.Id}).ToList();
+            return dbContext.Users.Select(u => new SelectListItem { Text = u.UserName, Value = u.Id }).ToList();
+        }
+
+        public static List<SelectListItem> RankNumbers(this IEnumerable<int> rangeOfNumbers)
+        {
+            return rangeOfNumbers.Select(u => new SelectListItem { Text = u.ToString(), Value = u.ToString() }).ToList();
         }
     }
 }

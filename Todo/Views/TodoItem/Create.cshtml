@@ -49,6 +49,15 @@
             </div>
 
             <div class="form-group">
+                <label asp-for="Rank"></label>
+                @Html.DropDownListFor(
+                         m => m.Rank,
+                         Enumerable.Range(0, 5).RankNumbers(),
+                         new { @class = "form-control" }
+                         )
+            </div>
+
+            <div class="form-group">
                 <button type="submit" class="btn btn-default">Save</button>
             </div>
 
