@@ -7,4 +7,7 @@
             this.style.display = displyOption;
         });
     });
-})
+
+   
+
+});

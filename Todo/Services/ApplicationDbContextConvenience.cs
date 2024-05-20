@@ -14,12 +14,24 @@ namespace Todo.Services
                 .Where(tl => tl.Owner.Id == userId || tl.Items.Any(x => x.ResponsiblePartyId == userId));
         }
 
-        public static TodoList SingleTodoList(this ApplicationDbContext dbContext, int todoListId)
+        public static TodoList SingleTodoList(this ApplicationDbContext dbContext, int todoListId, bool orderBuRank = false)
         {
-            return dbContext.TodoLists.Include(tl => tl.Owner)
-                .Include(tl => tl.Items.OrderBy(it => it.Importance))
-                .ThenInclude(ti => ti.ResponsibleParty)
-                .Single(tl => tl.TodoListId == todoListId);
+
+            if (orderBuRank)
+            {
+                return dbContext.TodoLists.Include(tl => tl.Owner)
+               .Include(tl => tl.Items.OrderBy(it => it.Rank))
+               .ThenInclude(ti => ti.ResponsibleParty)
+               .Single(tl => tl.TodoListId == todoListId);
+            }
+            else
+            {
+                return dbContext.TodoLists.Include(tl => tl.Owner)
+               .Include(tl => tl.Items.OrderBy(it => it.Importance))
+               .ThenInclude(ti => ti.ResponsibleParty)
+               .Single(tl => tl.TodoListId == todoListId);
+            }
+
         }
 
         public static TodoItem SingleTodoItem(this ApplicationDbContext dbContext, int todoItemId)

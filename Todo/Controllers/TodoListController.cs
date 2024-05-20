@@ -31,9 +31,9 @@ namespace Todo.Controllers
             return View(viewmodel);
         }
 
-        public IActionResult Detail(int todoListId)
+        public IActionResult Detail(int todoListId, bool oderByRank = false)
         {
-            var todoList = dbContext.SingleTodoList(todoListId);
+            var todoList = dbContext.SingleTodoList(todoListId, oderByRank);
             var viewmodel = TodoListDetailViewmodelFactory.Create(todoList);
             return View(viewmodel);
         }

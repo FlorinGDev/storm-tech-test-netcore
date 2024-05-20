@@ -21,6 +21,8 @@
                 <input type="checkbox" id="isDoneToggle"></<input>
                 <label for="isDoneToggle">Hide IsDone Items</label>
             </div>
+           
+            <a asp-action="Detail" asp-controller="TodoList" asp-route-todoListId="@Model.TodoListId" asp-route-oderByRank="true"> Order on Rank descending</a>
         </li>
 
         @foreach (var item in Model.Items)
@@ -40,31 +42,33 @@
             }
 
             <li class="list-group-item @contextualClass @(item.IsDone?"onToggleIsDoneHide":"")">
-                
+
                 <div class="row">
 
-                <div class="col-md-8">
-                    <a asp-action="Edit" asp-controller="TodoItem" asp-route-todoItemId="@item.TodoItemId">
+                    <div class="col-md-8">
+                        <a asp-action="Edit" asp-controller="TodoItem" asp-route-todoItemId="@item.TodoItemId">
 
-                        @if (item.IsDone)
-                        {
-                            <s>@item.Title</s>
-                        }
-                        else
-                        {
-                            <text>@item.Title</text>
-                        }
-                    </a>
-                </div>
+                            @if (item.IsDone)
+                            {
+                                <s>@item.Title</s>
+                                <p>@item.Rank</p>
+                            }
+                            else
+                            {
+                                <text>@item.Title</text>
+                                <p>@item.Rank</p>
+                            }
+                        </a>
+                    </div>
+                   
+                    <div class="col-md-4 text-right">
+                        <small>
+                            @item.ResponsibleParty.UserName
 
-                <div class="col-md-4 text-right">
-                    <small>
-                        @item.ResponsibleParty.UserName
+                            <img src="https://www.gravatar.com/avatar/@Gravatar.GetHash(item.ResponsibleParty.Email)?s=30" />
 
-                        <img src="https://www.gravatar.com/avatar/@Gravatar.GetHash(item.ResponsibleParty.Email)?s=30"/>
-
-                    </small>
-                </div>
+                        </small>
+                    </div>
                 </div>
 
             </li>
